@@ -1,19 +1,26 @@
 import React from 'react'
-
 import Login from './components/login.jsx'
 import Calendar from './calendar/calendar.jsx'
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+
 
 const app = () =>{
 
 
   return (
 
- 
-    <div>
+    <Router>
+   <Switch>
+   <Route path='/' exact component={Login}/>
+   <Route path='/calendar' exact component={Calendar}/>
+    {/* <div>
       <h1> Absent Tracker</h1>
       <Login></Login> 
      <Calendar></Calendar>
-    </div>
+    </div> */}
+    </Switch>
+    </Router>
+
   )
 
 }

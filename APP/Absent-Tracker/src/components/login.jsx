@@ -1,60 +1,62 @@
-import React, {useState,useEffect} from 'react';
-import './login.css'
+import React, { useState, useEffect } from 'react';
+import './login.css';
+import { useHistory } from 'react-router-dom';
+
+const LoginForm = () => {
+  const history = useHistory();
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
 
-const LoginForm = ()=>{
+   // Retrieve the username from localStorage when the component mounts
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      setUserName(storedUsername);
+    }
+  }, []);
 
-     const[username,setUserName] = useState();
-     const[password,setPassWord] =useState(); 
+  const handleLogIn = () => {
+    // Implement your login authentication logic here
+    if (username === 'admin' && password === 'password') {
+      // For simplicity, assume login is successful
+      history.push('/calendar'); // Redirect to the calendar component
+    } else {
+      alert('Invalid username or password');
+    }
+  };
 
-     useEffect(() => {
-        // Retrieve the username from localStorage when the component mounts
-        const storedUsername = localStorage.getItem('username');
-        if (storedUsername) {
-          setUsername(storedUsername);
-        }
-      }, []);
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
 
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
 
-     const handleUserNameChange = (e) => {
-     setUserName(e.target.value);
-     }
-     const handlePasswordChange =(e) =>{
-        setPassWord(e.target.value);
-     }
-     const handleSubmit=(e) =>{
-        //ang kani para di mo go through lahos ang submit form
-     e.preventDefault()
-    console.log('user',username)
-    console.log('password',password)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Call handleLogin to handle the login process
+    handleLogIn();
+  };
 
-    setPassWord('')
-     }
+  return (
+    <div className='cen'>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">UserName:</label>
+          <input type='text' id='username' value={username} onChange={handleUserNameChange} />
+        </div>
 
-
-
-return (
- <div className='cen'>
-
- <form onSubmit={handleSubmit}>
-
-  <div>
-    <label htmlFor="username">UserName:</label>
-    <input type='text' id='username' value={username} onChange={handleUserNameChange}/>
-  </div>
-
-  <div>
-    <label htmlFor="password">Password:</label>
-    <input type='text' id='password' value={password} onChange={handlePasswordChange}/>
-  </div>
- 
-  <button type='submit'>LogIn</button>
-
-
-  </form>
- </div>
-);
-}
-
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input type='password' id='password' value={password} onChange={handlePasswordChange} />
+        </div>
+        
+        <button type='submit'>LogIn</button>
+      </form>
+    </div>
+  );
+};
 
 export default LoginForm;
