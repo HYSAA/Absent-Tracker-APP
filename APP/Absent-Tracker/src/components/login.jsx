@@ -34,8 +34,8 @@ const LoginForm = ()=>{
 
 
 return (
- <div>
- <h2>Login</h2>
+ <div className='cen'>
+
  <form onSubmit={handleSubmit}>
 
   <div>
@@ -54,12 +54,7 @@ return (
   </form>
  </div>
 );
-
-
 }
-
-
-
 
 
 export default LoginForm;
