@@ -1,24 +1,19 @@
-import React, { useState } from 'react'
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css'
+import React from 'react'
+
 import Login from './components/login.jsx'
+import Calendar from './calendar/calendar.jsx'
 
 const app = () =>{
- const [date, setDate]= useState(new Date());
+
 
   return (
 
+ 
     <div>
-      <Calendar
-        onChange={setDate}
-        value={date}
-      />
-      <p>Selected date: {date.toDateString()}</p>
+      <h1> Absent Tracker</h1>
+      <Login></Login> 
+     <Calendar></Calendar>
     </div>
-    // <div>
-    //   <h1> Absent Tracker</h1>
-    //   <Login></Login>
-    // </div>
   )
 
 }
