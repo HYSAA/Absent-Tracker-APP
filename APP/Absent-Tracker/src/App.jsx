@@ -1,30 +1,22 @@
-import React from 'react'
-import Login from './components/login.jsx'
-import Calendar from './calendar/calendar.jsx'
-import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import Login from './components/login.jsx';
+import Calendar from './calendar/calendar.jsx';
 
-const app = () =>{
-
-
+const App = () => {
   return (
-
     <Router>
-   <Switch>
-   <Route path='/' exact component={Login}/>
-   <Route path='/calendar' exact component={Calendar}/>
-    {/* <div>
-      <h1> Absent Tracker</h1>
-      <Login></Login> 
-     <Calendar></Calendar>
-    </div> */}
-    </Switch>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/calendar" element={<Calendar />} />
+      </Routes>
     </Router>
+  );
+};
 
-  )
+export default App;
 
-}
-export default app;
 
 
 // import React, { useState } from 'react';

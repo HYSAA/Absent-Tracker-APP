@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './login.css';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(''); 
 
 
    // Retrieve the username from localStorage when the component mounts
@@ -14,13 +14,15 @@ const LoginForm = () => {
     if (storedUsername) {
       setUserName(storedUsername);
     }
+    console.log(storedUsername)
   }, []);
+ 
 
   const handleLogIn = () => {
     // Implement your login authentication logic here
     if (username === 'admin' && password === 'password') {
       // For simplicity, assume login is successful
-      history.push('/calendar'); // Redirect to the calendar component
+      navigate('/calendar'); // Redirect to the calendar component
     } else {
       alert('Invalid username or password');
     }
@@ -45,12 +47,12 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">UserName:</label>
-          <input type='text' id='username' value={username} onChange={handleUserNameChange} />
+          <input type='text' id='username' value={username} onChange={handleUserNameChange}  autoComplete="username"/>
         </div>
 
         <div>
           <label htmlFor="password">Password:</label>
-          <input type='password' id='password' value={password} onChange={handlePasswordChange} />
+          <input type='password' id='password' value={password} onChange={handlePasswordChange}   autoComplete="current-password"  />
         </div>
         
         <button type='submit'>LogIn</button>
