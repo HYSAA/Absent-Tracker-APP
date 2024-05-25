@@ -1,23 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Login from './components/login.jsx';
 import Calendar from './calendar/calendar.jsx';
 import Navbar from './navbar/myNavbar.jsx';
 
 const App = () => {
-  return (
+  const location = useLocation();
 
-    <Navbar>
-    <Router>
+  return (
+    <>
+      {location.pathname !== '/' && <Navbar />}
       <Routes>
         <Route path="/" element={<Login />} />
-      
         <Route path="/calendar" element={<Calendar />} />
       </Routes>
-    </Router>
-    </Navbar>
+    </>
   );
 };
 
-export default App;
+const AppWrapper = () => {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+};
 
+export default AppWrapper;
