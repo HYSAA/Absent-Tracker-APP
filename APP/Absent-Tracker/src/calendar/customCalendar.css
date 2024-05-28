@@ -12,8 +12,9 @@
 /* customCalendar.css */
 .highlight {
     background-color: #e81e1b; /* Yellow background color */
-    border-radius: 50%; /* Makes the background circular */
+    border-radius: 100%; /* Makes the background circular */
     padding: 5px; /* Adjust padding as needed */
   }
+  
   
 
