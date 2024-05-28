@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,6 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 export default function ButtonAppBar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -24,6 +26,10 @@ export default function ButtonAppBar() {
     setDrawerOpen(open);
   };
 
+  const handleLogout = () => {
+    navigate('/');
+  };
+
   const list = () => (
     <Box
       sx={{ width: 250 }}
@@ -32,8 +38,14 @@ export default function ButtonAppBar() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {['Profile', 'Settings', 'Logout'].map((text, index) => (
-          <ListItem button key={text}>
+        {['Logout'].map((text) => (
+          <ListItem
+            button
+            key={text}
+            component={text === 'Logout' ? 'div' : Link}
+            to={text !== 'Logout' ? `/${text.toLowerCase()}` : undefined}
+            onClick={text === 'Logout' ? handleLogout : undefined}
+          >
             <ListItemText primary={text} />
           </ListItem>
         ))}

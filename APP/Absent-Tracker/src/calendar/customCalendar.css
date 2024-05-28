@@ -1,19 +1,21 @@
-/* Custom styles for the react-calendar component */
+
 .react-calendar {
     width: 100%; 
-    max-width: 500px; /* Adjust max-width as needed */
-    font-size: 1rem; /* Adjust font-size as needed */
+    max-width: 500px; 
+    font-size: 1rem; 
 }
 
 .react-calendar .react-calendar__tile {
-    height: 80px; /* Adjust the height of each tile as needed */
-    
+    height: 80px; 
 }
-/* customCalendar.css */
+h3{
+  font-size: medium;
+}
+
 .highlight {
-    background-color: #e81e1b; /* Yellow background color */
-    border-radius: 100%; /* Makes the background circular */
-    padding: 5px; /* Adjust padding as needed */
+    background-color: #e44543; 
+    border-radius: 80%;
+    padding: 5px;
   }
   
   

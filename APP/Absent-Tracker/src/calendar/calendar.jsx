@@ -15,7 +15,7 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     width: '300px',
-    height: '400px', // Increased height to accommodate the event list
+    height: '300px', // Increased height to accommodate the event list
     padding: '20px',
     display: 'flex',
     flexDirection: 'column',
@@ -72,7 +72,7 @@ function MyCalendar() {
   const handleDeleteEvent = () => {
     setEvents(prevEvents => {
       const filteredEvents = prevEvents.filter(event => event.date !== selectedDate.toDateString());
-      console.log('Event deleted:', selectedDate.toDateString()); // Debug: Log deleted event
+      console.log('Event deleted:', selectedDate.toDateString()); 
       return filteredEvents;
     });
     setModalIsOpen(false);
@@ -89,7 +89,13 @@ function MyCalendar() {
     }
     return null;
   };
+  
+  const handleHistory= () =>{
+    
 
+     navigate('/history')
+
+  }
   return (
     <div>
       <Calendar
@@ -117,7 +123,7 @@ function MyCalendar() {
         </div>
         {eventsForSelectedDate.length > 0 && (
           <div style={{ marginTop: '20px', width: '100%' }}>
-            <h3>Events for {selectedDate.toDateString()}:</h3>
+            <h3>Absent ka because?</h3>
             <ul>
               {eventsForSelectedDate.map((event, index) => (
                 <li key={index}>{event.text}</li>

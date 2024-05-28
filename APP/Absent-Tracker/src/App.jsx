@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Login from './components/login.jsx';
 import Calendar from './calendar/calendar.jsx';
 import Navbar from './navbar/myNavbar.jsx';
-import History from './history/history.jsx'
+// import History from './history/history.jsx'
 
 
 const App = () => {
