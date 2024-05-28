@@ -29,7 +29,9 @@ export default function ButtonAppBar() {
   const handleLogout = () => {
     navigate('/');
   };
-
+   const handleHistory = () =>{
+    navigate('/history');
+   }
   const list = () => (
     <Box
       sx={{ width: 250 }}
@@ -70,7 +72,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Absent Tracker
           </Typography>
-          <Button color="inherit">History</Button>
+          <Button  onClick={handleHistory}  color="inherit">History</Button>
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>

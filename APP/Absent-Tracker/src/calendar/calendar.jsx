@@ -33,16 +33,18 @@ function MyCalendar() {
   const [eventText, setEventText] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
 
+
   useEffect(() => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     setEvents(storedEvents);
-    console.log('Loaded events from local storage:', storedEvents); 
+    // console.log('Loaded events from local storage:', storedEvents); 
   }, []);
 
+   //BUG YAWA OY
   useEffect(() => {
     if (events.length > 0) {
-      localStorage.setItem('calendarEvents', JSON.stringify(events));
-      console.log('Events updated in local storage:', events); 
+    localStorage.setItem('calendarEvents', JSON.stringify(events));
+    // console.log('Events updated in local storage:', events); 
     }
   }, [events]);
 
@@ -59,11 +61,11 @@ function MyCalendar() {
       if (existingEventIndex > -1) {
         const updatedEvents = [...prevEvents];
         updatedEvents[existingEventIndex].text = eventText;
-        console.log('Event updated:', updatedEvents[existingEventIndex]); // Debug: Log updated event
+        // console.log('Event updated:', updatedEvents[existingEventIndex]); 
         return updatedEvents;
       }
       const newEvent = { date: selectedDate.toDateString(), text: eventText };
-      console.log('New event created:', newEvent); // Debug: Log new event
+      // console.log('New event created:', newEvent); // Debug: Log new event
       return [...prevEvents, newEvent];
     });
     setModalIsOpen(false);
@@ -72,7 +74,7 @@ function MyCalendar() {
   const handleDeleteEvent = () => {
     setEvents(prevEvents => {
       const filteredEvents = prevEvents.filter(event => event.date !== selectedDate.toDateString());
-      console.log('Event deleted:', selectedDate.toDateString()); 
+      // console.log('Event deleted:', selectedDate.toDateString()); 
       return filteredEvents;
     });
     setModalIsOpen(false);
@@ -89,13 +91,7 @@ function MyCalendar() {
     }
     return null;
   };
-  
-  const handleHistory= () =>{
-    
 
-     navigate('/history')
-
-  }
   return (
     <div>
       <Calendar
