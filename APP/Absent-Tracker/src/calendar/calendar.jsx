@@ -15,7 +15,7 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     width: '300px',
-    height: '300px', // Increased height to accommodate the event list
+    height: '300px',
     padding: '20px',
     display: 'flex',
     flexDirection: 'column',
@@ -29,22 +29,19 @@ const customStyles = {
 function MyCalendar() {
   const [date, setDate] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [historyModalIsOpen, setHistoryModalIsOpen] = useState(false);
   const [events, setEvents] = useState([]);
   const [eventText, setEventText] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
 
-
   useEffect(() => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     setEvents(storedEvents);
-    // console.log('Loaded events from local storage:', storedEvents); 
   }, []);
 
-   //BUG YAWA OY
   useEffect(() => {
     if (events.length > 0) {
-    localStorage.setItem('calendarEvents', JSON.stringify(events));
-    // console.log('Events updated in local storage:', events); 
+      localStorage.setItem('calendarEvents', JSON.stringify(events));
     }
   }, [events]);
 
@@ -61,11 +58,9 @@ function MyCalendar() {
       if (existingEventIndex > -1) {
         const updatedEvents = [...prevEvents];
         updatedEvents[existingEventIndex].text = eventText;
-        // console.log('Event updated:', updatedEvents[existingEventIndex]); 
         return updatedEvents;
       }
       const newEvent = { date: selectedDate.toDateString(), text: eventText };
-      // console.log('New event created:', newEvent); // Debug: Log new event
       return [...prevEvents, newEvent];
     });
     setModalIsOpen(false);
@@ -74,7 +69,6 @@ function MyCalendar() {
   const handleDeleteEvent = () => {
     setEvents(prevEvents => {
       const filteredEvents = prevEvents.filter(event => event.date !== selectedDate.toDateString());
-      // console.log('Event deleted:', selectedDate.toDateString()); 
       return filteredEvents;
     });
     setModalIsOpen(false);
@@ -100,6 +94,7 @@ function MyCalendar() {
         onChange={setDate}
         tileClassName={tileClassName}
       />
+      <button onClick={() => setHistoryModalIsOpen(true)}>Show History</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
@@ -119,7 +114,7 @@ function MyCalendar() {
         </div>
         {eventsForSelectedDate.length > 0 && (
           <div style={{ marginTop: '20px', width: '100%' }}>
-            <h3>Absent ka because?</h3>
+            <h3>Absent ka because???</h3>
             <ul>
               {eventsForSelectedDate.map((event, index) => (
                 <li key={index}>{event.text}</li>
@@ -127,6 +122,23 @@ function MyCalendar() {
             </ul>
           </div>
         )}
+      </Modal>
+
+      <Modal
+        isOpen={historyModalIsOpen}
+        onRequestClose={() => setHistoryModalIsOpen(false)}
+        style={customStyles}
+        contentLabel="History Modal"
+      >
+        <h2>Rason sa absent bi</h2>
+        <div style={{ marginTop: '20px', width: '100%' }}>
+          <ul>
+            {events.map((event, index) => (
+              <li key={index}>{event.date}: {event.text}</li>
+            ))}
+          </ul>
+        </div>
+        <button onClick={() => setHistoryModalIsOpen(false)}>Close</button>
       </Modal>
     </div>
   );

@@ -72,7 +72,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Absent Tracker
           </Typography>
-          <Button  onClick={handleHistory}  color="inherit">History</Button>
+       
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
@@ -81,3 +81,4 @@ export default function ButtonAppBar() {
     </Box>
   );
 }
+     
